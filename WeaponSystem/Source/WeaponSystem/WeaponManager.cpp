@@ -4,34 +4,36 @@
 #include "WeaponSystemProjectile.h"
 
 
-// Sets default values
-AWeaponManager::AWeaponManager()
+// Sets default values for this component's properties
+UWeaponManager::UWeaponManager()
 {
-	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
-	PrimaryActorTick.bCanEverTick = true;
+	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
+	// off to improve performance if you don't need them.
+	PrimaryComponentTick.bCanEverTick = true;
 
+	// ...
 }
 
-// Called when the game starts or when spawned
-void AWeaponManager::BeginPlay()
+
+// Called when the game starts
+void UWeaponManager::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// ...
+	
 }
+
 
 // Called every frame
-void AWeaponManager::Tick(float DeltaTime)
+void UWeaponManager::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
-	Super::Tick(DeltaTime);
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	// ...
 }
 
-void AWeaponManager::SetWeaponType()
-{
-
-}
-
-void AWeaponManager::FireWeapon(FVector SpawnPoint, FRotator SpawnRotation)
+void UWeaponManager::FireWeapon(FVector SpawnPoint, FRotator SpawnRotation)
 {
 	switch (ProjectileEnum)
 	{

@@ -1,7 +1,7 @@
 // Copyright 1998-2018 Epic Games, Inc. All Rights Reserved.
 
 #include "WeaponSystemCharacter.h"
-#include "WeaponManager.h"
+//#include "WeaponManager.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -19,7 +19,6 @@ DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
 AWeaponSystemCharacter::AWeaponSystemCharacter()
 {
-	WeaponManager = CreateDefaultSubobject<AWeaponManager>(FName("WeaponManager"));
 
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(55.f, 96.0f);
@@ -82,6 +81,11 @@ AWeaponSystemCharacter::AWeaponSystemCharacter()
 	VR_MuzzleLocation->SetRelativeLocation(FVector(0.000004, 53.999992, 10.000000));
 	VR_MuzzleLocation->SetRelativeRotation(FRotator(0.0f, 90.0f, 0.0f));		// Counteract the rotation of the VR gun model.
 
+	WeaponManager = CreateDefaultSubobject<UWeaponManager>(TEXT("WeaponManager"));
+	WeaponManager->SetupAttachment(RootComponent);
+
+	/*WeaponManager = CreateDefaultSubobject<UWeaponManager>(TEXT("WeaponManager"));
+	WeaponManager->setupAtachment(RootComponent);*/
 
 
 	// Uncomment the following line to turn motion controllers on by default:

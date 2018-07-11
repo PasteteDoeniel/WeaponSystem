@@ -3,8 +3,9 @@
 #pragma once
 
 #include "Engine.h"
-#include "GameFramework/Actor.h"
+#include "Components/ActorComponent.h"
 #include "WeaponManager.generated.h"
+
 
 UENUM(BlueprintType)
 enum class EWeaponTypeEnum : uint8
@@ -21,14 +22,14 @@ enum class EProjectileTypeEnum : uint8
 	PE_Projectile UMETA(DisplayName = "Projectile"),
 };
 
-UCLASS()
-class WEAPONSYSTEM_API AWeaponManager : public AActor
+UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+class WEAPONSYSTEM_API UWeaponManager : public UActorComponent
 {
 	GENERATED_BODY()
 
-public:
-	// Sets default values for this actor's properties
-	AWeaponManager();
+public:	
+	// Sets default values for this component's properties
+	UWeaponManager();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Enum)
 		EWeaponTypeEnum WeaponEnum;
@@ -65,20 +66,17 @@ public:
 	//SniperRifle
 
 protected:
-	// Called when the game starts or when spawned
+	// Called when the game starts
 	virtual void BeginPlay() override;
 
-public:
+public:	
 	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	UPROPERTY(EditDefaultsOnly, Category = Projectile)
 		TSubclassOf<class AWeaponSystemProjectile> ProjectileClass;
 
 	UFUNCTION()
 		void FireWeapon(FVector SpawnPoint, FRotator SpawnRotation);
-
-	UFUNCTION()
-		void SetWeaponType();
-
+	
 };

@@ -45,6 +45,9 @@ class AWeaponSystemCharacter : public ACharacter
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 		class UMotionControllerComponent* L_MotionController;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Manager, meta = (AllowPrivateAccess = "true"))
+		class UWeaponManager* WeaponManager;
+
 public:
 	AWeaponSystemCharacter();
 
@@ -72,8 +75,6 @@ public:
 	//UPROPERTY(EditDefaultsOnly, Category = WeaponManager)
 	//	TSubclassOf<class AWeaponManager> WeaponManager;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Checkpoint)
-		UClassOfTheComponent* ;
 
 	/** Sound to play each time we fire */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
