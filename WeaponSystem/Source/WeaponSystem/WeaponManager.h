@@ -94,6 +94,9 @@ public:
 		void FireWeapon(FVector SpawnPoint, FRotator SpawnRotation);
 
 	UFUNCTION()
+		void StopFireWeapon();
+
+	UFUNCTION()
 		void ResetFireRateTimer();
 
 };

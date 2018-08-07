@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "WeaponManager.h"
+#include "WeaponSystemCharacter.h"
 #include "WeaponSystemProjectile.h"
 
 
@@ -121,8 +122,15 @@ void UWeaponManager::FireWeapon(FVector SpawnPoint, FRotator SpawnRotation)
 	}
 }
 
+void UWeaponManager::StopFireWeapon()
+{
+	GetWorld()->GetTimerManager().ClearTimer(AssaultFireRateTimerHandle);
+}
+
 
 void UWeaponManager::ResetFireRateTimer()
 {
+	AWeaponSystemCharacter* Owner = Cast<AWeaponSystemCharacter>(GetOwner());
 	canFire = true;
+	Owner->AutomaticFire();
 }

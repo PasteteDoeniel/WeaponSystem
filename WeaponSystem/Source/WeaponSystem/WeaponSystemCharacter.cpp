@@ -136,6 +136,7 @@ void AWeaponSystemCharacter::SetupPlayerInputComponent(class UInputComponent* Pl
 
 	// Bind fire event
 	PlayerInputComponent->BindAction("Fire", IE_Pressed, this, &AWeaponSystemCharacter::OnFire);
+	PlayerInputComponent->BindAction("Fire", IE_Released, this, &AWeaponSystemCharacter::OnStopFire);
 
 	// Enable touchscreen input
 	EnableTouchscreenMovement(PlayerInputComponent);
@@ -153,6 +154,11 @@ void AWeaponSystemCharacter::SetupPlayerInputComponent(class UInputComponent* Pl
 	PlayerInputComponent->BindAxis("TurnRate", this, &AWeaponSystemCharacter::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &AWeaponSystemCharacter::LookUpAtRate);
+}
+
+void AWeaponSystemCharacter::AutomaticFire()
+{
+	OnFire();
 }
 
 void AWeaponSystemCharacter::OnFire()
@@ -212,6 +218,11 @@ void AWeaponSystemCharacter::OnFire()
 			AnimInstance->Montage_Play(FireAnimation, 1.f);
 		}
 	}
+}
+
+void AWeaponSystemCharacter::OnStopFire()
+{
+	WeaponManager->StopFireWeapon();
 }
 
 void AWeaponSystemCharacter::OnResetVR()

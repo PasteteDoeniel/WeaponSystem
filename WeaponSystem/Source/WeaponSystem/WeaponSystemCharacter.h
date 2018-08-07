@@ -54,6 +54,9 @@ public:
 
 	virtual void PostInitializeComponents() override;
 
+	UFUNCTION()
+	void AutomaticFire();
+
 protected:
 	virtual void BeginPlay();
 
@@ -95,6 +98,8 @@ protected:
 
 	/** Fires a projectile. */
 	void OnFire();
+	void OnStopFire();
+
 
 	/** Resets HMD orientation and position in VR. */
 	void OnResetVR();
