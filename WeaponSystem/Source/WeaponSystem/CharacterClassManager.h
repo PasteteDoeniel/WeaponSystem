@@ -2,15 +2,24 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
+#include "Engine.h"
 #include "Components/ActorComponent.h"
 #include "CharacterClassManager.generated.h"
 
 UENUM(BlueprintType)
-enum class EWeaponSlotTypeEnum : uint8
+enum class EWeaponSlotEnum : uint8
 {
-	WE_Primary UMETA(DisplayName = "Primary Weapon"),
-	WE_Secondary UMETA(DisplayName = "Secondary Weapon")
+	WS_Primary UMETA(DisplayName = "Primary Weapon"),
+	WS_Secondary UMETA(DisplayName = "Secondary Weapon")
+};
+
+
+UENUM(BlueprintType)
+enum class EWeaponClassEnum : uint8
+{
+	WC_AssaultRifle UMETA(DisplayName = "Assault Rifle"),
+	WC_Shotgun UMETA(DisplayName = "Shotgun"),
+	WC_SniperRifle UMETA(DisplayName = "SniperRifle")
 };
 
 UCLASS(ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
@@ -22,8 +31,22 @@ public:
 	// Sets default values for this component's properties
 	UCharacterClassManager();
 
+	/*enums*/
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Enum)
+		EWeaponSlotEnum WeaponSlotEnum;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Enum)
+		EWeaponClassEnum WeaponClassEnum;
+
 	//primary Weapon
+
+	UPROPERTY(EditDefaultsOnly, Category = Weapon)
+		TSubclassOf<class ABaseWeapon> PrimaryWeapon;
+
 	//secondary weapon
+
+	UPROPERTY(EditDefaultsOnly, Category = Weapon)
+		TSubclassOf<class ABaseWeapon> SecondaryWeapon;
 
 	//attach weapon blueprint to character
 	//select character mesh

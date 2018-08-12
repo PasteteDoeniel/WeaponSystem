@@ -4,6 +4,7 @@
 
 #include "Engine.h"
 #include "WeaponManager.h"
+#include "CharacterClassManager.h"
 #include "GameFramework/Character.h"
 #include "WeaponSystemCharacter.generated.h"
 
@@ -48,6 +49,10 @@ class AWeaponSystemCharacter : public ACharacter
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Manager, meta = (AllowPrivateAccess = "true"))
 		class UWeaponManager* WeaponManager;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Manager, meta = (AllowPrivateAccess = "true"))
+		class UCharacterClassManager* CharacterClassManager;
+
 
 public:
 	AWeaponSystemCharacter();

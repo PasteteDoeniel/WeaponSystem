@@ -32,3 +32,13 @@ void UCharacterClassManager::TickComponent(float DeltaTime, ELevelTick TickType,
 	// ...
 }
 
+void UCharacterClassManager::SwitchWeapon()
+{
+
+}
+
+void UCharacterClassManager::Fire()
+{
+
+}
+

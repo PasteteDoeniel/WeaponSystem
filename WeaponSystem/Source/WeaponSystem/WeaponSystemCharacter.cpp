@@ -80,11 +80,9 @@ AWeaponSystemCharacter::AWeaponSystemCharacter()
 	VR_MuzzleLocation->SetRelativeLocation(FVector(0.000004, 53.999992, 10.000000));
 	VR_MuzzleLocation->SetRelativeRotation(FRotator(0.0f, 90.0f, 0.0f));		// Counteract the rotation of the VR gun model.
 
-	/*WeaponManager = CreateDefaultSubobject<UWeaponManager>(TEXT("WeaponManager"));
-	WeaponManager->SetupAttachment(RootComponent);*/
-
 	WeaponManager = CreateDefaultSubobject<UWeaponManager>(TEXT("WeaponManager"));
-	//WeaponManager->setupAtachment(RootComponent);
+
+	CharacterClassManager = CreateDefaultSubobject<UCharacterClassManager>(TEXT("CharacterClassManager"));
 
 
 
@@ -118,6 +116,7 @@ void AWeaponSystemCharacter::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
 
+	CharacterClassManager = AActor::FindComponentByClass<UCharacterClassManager>();
 	WeaponManager = AActor::FindComponentByClass<UWeaponManager>();
 }
 
